@@ -4,6 +4,9 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "license": "MIT",
+  "files":  [
+    "dist"
+  ],
   "peerDependencies": {
     "@reduxjs/toolkit": ">=1.5",
     "ramda": ">=0.27",
