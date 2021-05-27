@@ -6,7 +6,7 @@
   "license": "MIT",
   "files": [
     "dist",
-    "custom-type.d.ts"
+    "typings"
   ],
   "scripts": {
     "build": "tsc"
