@@ -1,5 +1,3 @@
-import "../custom-type"
-
 export * from './global-task'
 export * from './redux-async-task'
 export * from './redux-module'
