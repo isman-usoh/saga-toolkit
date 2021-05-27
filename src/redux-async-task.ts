@@ -1,9 +1,10 @@
-import { createAction, PayloadActionCreator, ActionCreatorWithPreparedPayload, createSelector } from '@reduxjs/toolkit'
+import { createAction, PayloadActionCreator, ActionCreatorWithPreparedPayload, createSelector, PrepareAction } from '@reduxjs/toolkit'
 import * as redux from 'react-redux'
 import { ForkEffect, takeLeading } from 'redux-saga/effects'
 import * as R from 'ramda'
 
 import { buildPathWithName, createGlobalAction, createGlobalSelector, GlobalActionType, GlobalSelector } from './global-task'
+import { WAIT_FOR_ACTION, ERROR_ACTION } from './redux-wait-for-action';
 
 export type Parameters<T> = T extends (...args: infer P) => any ? P : never
 export type ReturnType<T> = T extends (...args: any) => infer V ? V : any
@@ -97,7 +98,12 @@ export function createReduxAsyncTask<
     const actions: ReduxAsyncTaskActionType<PAYLOAD, DATA> = {
         ...globalActions,
         initial: createAction(types.INITIAL),
-        request: createAction(types.REQUEST, (payload: PAYLOAD, meta?: any) => ({ payload, meta })),
+        request: createAction(types.REQUEST, (payload: PAYLOAD, meta?: any) => ({ 
+            payload,
+            meta,
+            [WAIT_FOR_ACTION]: types.SUCCESS,
+            [ERROR_ACTION]: types.FAILURE
+        })),
         success: createAction(types.SUCCESS, (payload: DATA, meta?: any) => ({ payload, meta })),
         failure: createAction(types.FAILURE, (error: any, message?: string, meta?: any) => ({ payload: message, error, meta })),
     }

@@ -9,7 +9,7 @@ export const loadSagaTasks = (modules: any) => {
     }, [])
 }
 
-export const loadReducers = (modules: any, initialState = {}) => {
+export const loadReducers = (modules: any, initialState = {}): any => {
     return Object.keys(modules)
         .reduce((reducerObjs, moduleName) => {
             const module = (modules as any)[moduleName]
