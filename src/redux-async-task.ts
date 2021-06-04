@@ -246,8 +246,8 @@ export function createReduxAsyncTask<
             const handleInit = () => {
                 return dispatch(actions.initial())
             }
-            const handleRequest = (payload: PAYLOAD, meta?: any) => {
-                return dispatch(actions.request(payload, meta))
+            const handleRequest = (payload: PAYLOAD, meta?: any): Promise<DATA> => {
+                return (dispatch(actions.request(payload, meta)) as any)
             }
             const handleSetValue = (path: (keyof S | string), value: any) => {
                 return dispatch(actions.setValue({ path, value }))
@@ -272,8 +272,8 @@ export function createReduxAsyncTask<
             const handleInit = () => {
                 return dispatch(actions.initial())
             }
-            const handleRequest = (payload: PAYLOAD) => {
-                return dispatch(actions.request(payload))
+            const handleRequest = (payload: PAYLOAD): Promise<DATA> => {
+                return (dispatch(actions.request(payload)) as any)
             }
             const handleSetValue = (path: (keyof S | string), value: any) => {
                 return dispatch(actions.setValue({ path, value }))
