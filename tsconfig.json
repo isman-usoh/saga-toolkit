@@ -10,7 +10,7 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": false,
     "noLib": false,
     "outDir": "dist",
     "lib": ["ES2015"],
