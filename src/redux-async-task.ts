@@ -244,19 +244,19 @@ export function createReduxAsyncTask<
         useAction: <S = any>() => {
             const dispatch = redux.useDispatch()
             const handleInit = () => {
-                dispatch(actions.initial())
+                return dispatch(actions.initial())
             }
             const handleRequest = (payload: PAYLOAD, meta?: any) => {
-                dispatch(actions.request(payload, meta))
+                return dispatch(actions.request(payload, meta))
             }
             const handleSetValue = (path: (keyof S | string), value: any) => {
-                dispatch(actions.setValue({ path, value }))
+                return dispatch(actions.setValue({ path, value }))
             }
             const handleClearValue = (path: (keyof S | string)) => {
-                dispatch(actions.clearValue({ path }))
+                return dispatch(actions.clearValue({ path }))
             }
             const handleMergeValue = (value: Partial<S>) => {
-                dispatch(actions.mergeValue(value))
+                return dispatch(actions.mergeValue(value))
             }
             return {
                 onInit: handleInit,
@@ -270,19 +270,19 @@ export function createReduxAsyncTask<
             const taskState = redux.useSelector(taskStateSelector)
             const dispatch = redux.useDispatch()
             const handleInit = () => {
-                dispatch(actions.initial())
+                return dispatch(actions.initial())
             }
             const handleRequest = (payload: PAYLOAD) => {
-                dispatch(actions.request(payload))
+                return dispatch(actions.request(payload))
             }
             const handleSetValue = (path: (keyof S | string), value: any) => {
-                dispatch(actions.setValue({ path, value }))
+                return dispatch(actions.setValue({ path, value }))
             }
             const handleClearValue = (path: (keyof S | string)) => {
-                dispatch(actions.clearValue({ path }))
+                return dispatch(actions.clearValue({ path }))
             }
             const handleMergeValue = (value: Partial<S>) => {
-                dispatch(actions.mergeValue(value))
+                return dispatch(actions.mergeValue(value))
             }
             return {
                 ...taskState,
