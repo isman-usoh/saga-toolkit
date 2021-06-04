@@ -98,12 +98,13 @@ export function createReduxAsyncTask<
     const actions: ReduxAsyncTaskActionType<PAYLOAD, DATA> = {
         ...globalActions,
         initial: createAction(types.INITIAL),
-        request: createAction(types.REQUEST, (payload: PAYLOAD, meta?: any) => ({ 
+        request: ((payload: PAYLOAD, meta?: any): any => ({
+            type: types.REQUEST,
             payload,
             meta,
             [WAIT_FOR_ACTION]: types.SUCCESS,
             [ERROR_ACTION]: types.FAILURE
-        })),
+        })) as any,
         success: createAction(types.SUCCESS, (payload: DATA, meta?: any) => ({ payload, meta })),
         failure: createAction(types.FAILURE, (error: any, message?: string, meta?: any) => ({ payload: message, error, meta })),
     }
